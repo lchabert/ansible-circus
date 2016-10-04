@@ -1,0 +1,21 @@
+- name: Ensure config dir is present
+  file: path={{circus_config_dir}} state=directory mode=0755
+  tags: [circus,config]
+
+- name: Apply default config for circus
+  template: src=circus.ini.j2 dest={{circus_config_file}} owner=root group=root mode=0755
+  tags: [circus,config]
+
+- name: Create sockets config for python apps
+  template: src=socket.j2 dest={{circus_config_dir}}/socket_{{ item }}.ini
+  with_items: "{{ circus_sockets.keys() | difference(circus_remove_sockets) }}"
+  notify:
+   - restart_circus
+  tags: [circus,config]
+
+- name: Create configurations for python apps
+  template: src=apps.j2 dest={{circus_config_dir}}/{{ item }}.ini
+  with_items: "{{ circus_apps.keys() | difference(circus_remove_apps) }}"
+  notify:
+   - restart_circus
+  tags: [circus,config]

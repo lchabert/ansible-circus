@@ -1,0 +1,6 @@
+#{{ ansible_managed }}
+
+[socket:{{item}}]
+{% for v in circus_sockets[item] %}
+{{ v }}
+{% endfor %}

@@ -1,0 +1,6 @@
+#{{ ansible_managed }}
+
+[watcher:{{item}}]
+{% for v in circus_apps[item] %}
+{{ v }}
+{% endfor %}

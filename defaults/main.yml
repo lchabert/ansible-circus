@@ -1,0 +1,14 @@
+---
+# defaults file for ansible-circusd
+circus_startup_enabled: False
+circus_httpd_enable: False
+circus_statsd_enable: False
+circus_config_dir: /etc/circus/circus.d
+circus_config_file: /etc/circus/circus.ini
+
+circus_apps: []
+circus_sockets: []
+circus_remove_sockets: []
+circus_remove_apps: []
+
+circus_systemd_path: /usr/lib/systemd/system/circus.service

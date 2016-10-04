@@ -1,0 +1,5 @@
+#{{ ansible_managed }}
+[circus]
+statsd = {{circus_statsd_enable}}
+httpd = {{circus_httpd_enable}}
+include_dir= {{circus_config_dir}}

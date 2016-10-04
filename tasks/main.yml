@@ -1,0 +1,5 @@
+---
+# tasks file for ansible-circusd
+- include: centos.yml
+  when: ansible_os_family == "RedHat"
+- include: config.yml

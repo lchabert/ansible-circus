@@ -1,0 +1,14 @@
+---
+- name: Install circus packages (system-wide)
+  become: root
+  pip: name=circus
+  tags: [circus,install]
+
+- name: Install systemd startup
+  template: src=circus.service.j2 dest={{circus_systemd_path}}
+  tags: [circus,install]
+
+- name: Enable circus at startup
+  service: name=circus enabled=yes
+  tags: [circus,install]
+  when: circus_startup_enabled == True

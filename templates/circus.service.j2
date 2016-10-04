@@ -1,0 +1,14 @@
+#{{ ansible_managed }}
+[Unit]
+Description=Circus process manager
+After=syslog.target network.target nss-lookup.target
+
+[Service]
+Type=simple
+ExecReload=/usr/bin/circusctl reload
+ExecStart=/usr/bin/circusd {{circus_config_file}}
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=default.target

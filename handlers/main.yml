@@ -1,0 +1,7 @@
+---
+# handlers file for ansible-circusd
+- name: reload_circus
+  service: name=circus state=reload
+
+- name: restart_circus
+  service: name=circus state=restarted
