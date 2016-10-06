@@ -3,6 +3,9 @@
   yum: pkg={{ item }} state=present
   with_items:
     - "@Development tools"
+    - python-devel
+    - python34-devel
+    - python-pip
   tags: [circus,install]
 
 - name: Install circus packages (system-wide)
