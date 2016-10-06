@@ -1,4 +1,10 @@
 ---
+- name: Install system-wide pip
+  yum: pkg={{ item }} state=present
+  with_items:
+    - "@Development tools"
+  tags: [circus,install]
+
 - name: Install circus packages (system-wide)
   become: root
   pip: name=circus
